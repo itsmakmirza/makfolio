@@ -47,7 +47,7 @@ const hasMore = allProjects.length > 10;
     import { animate, inView } from "motion";
     inView("section", (element) => {
       animate(element, { opacity: [0, 1], y: [30, 0] }, { duration: 0.7, ease: [0.16, 1, 0.3, 1] });
-    }, { margin: "-10% 0px" });
+    }, { once: true, margin: "0px 0px -80px 0px" });
 
     const trigger = document.getElementById('infinite-scroll-trigger');
     const grid = document.getElementById('projects-grid');

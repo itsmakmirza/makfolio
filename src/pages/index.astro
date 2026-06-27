@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
         <span class="text-[11px] px-4.5 py-2.5 font-mono tracking-[0.15em] uppercase text-neutral-600 dark:text-neutral-400 font-medium">Welcome to my portfolio</span>
       </div>
       
-      <h1 class="text-5xl md:text-6xl lg:text-[90px] leading-[0.95] tracking-tight text-neutral-900 dark:text-white uppercase">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[90px] leading-[0.95] tracking-tight text-neutral-900 dark:text-white uppercase">
         Hello! 👋<br>
         I'm Mak
       </h1>
@@ -30,12 +30,9 @@ import Layout from '../layouts/Layout.astro';
       
 
       <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
-        <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-[16px] bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-mono text-xs tracking-[0.15em] font-bold uppercase hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10 transition-all duration-300">
+        <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-[16px] bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-mono text-xs tracking-[0.15em] font-bold uppercase hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10 transition-all duration-300 w-full sm:w-auto">
           BOOK A CHAT
         </a>
-        <button class="inline-flex items-center justify-center px-8 py-4 rounded-[16px] border bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 font-mono text-xs font-bold tracking-[0.15em] uppercase hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
-          COPY EMAIL
-        </button>
       </div>
     </section>
 
@@ -49,8 +46,8 @@ import Layout from '../layouts/Layout.astro';
         { label: 'Products Shipped', value: '50+' },
         { label: 'Problems Solved', value: '∞' }
       ].map((stat, index) => (
-        <div class="flex flex-col gap-4 relative z-10">
-          <span class="text-5xl md:text-[64px] leading-none font-heading text-neutral-900 dark:text-white group-hover:scale-110 transition-transform origin-left">{stat.value}</span>
+        <div class="flex flex-col gap-4 relative z-10 group">
+          <span class="inline-block text-5xl md:text-[64px] leading-none font-heading text-neutral-900 dark:text-white group-hover:scale-110 transition-transform duration-300 origin-left">{stat.value}</span>
           <span class="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 uppercase tracking-widest font-medium">{stat.label}</span>
         </div>
       ))}
@@ -58,7 +55,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Services / What I work on -->
     <section class="opacity-0 flex flex-col gap-16">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight uppercase">What I Work On</h2>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading tracking-tight uppercase">What I Work On</h2>
       <div class="flex flex-col">
         {[
           { title: 'Full-Stack Ecosystems', desc: 'End-to-end architecture, scalable APIs, and responsive front-ends' },
@@ -81,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- Let's Work Together CTA -->
-    <section class="opacity-0 flex flex-col gap-10 bg-neutral-100 dark:bg-[#181818] rounded-[32px] p-10 md:p-16 mb-24 border border-neutral-200/50 dark:border-neutral-800/50 relative overflow-hidden">
+    <section class="opacity-0 flex flex-col gap-10 bg-neutral-100 dark:bg-[#181818] rounded-[32px] p-6 md:p-16 mb-24 border border-neutral-200/50 dark:border-neutral-800/50 relative overflow-hidden">
       <!-- Decorative background element -->
       <div class="absolute top-0 right-0 p-16 opacity-5 pointer-events-none">
         <svg class="w-96 h-96 text-neutral-900 dark:text-white" fill="currentColor" viewBox="0 0 100 100">
@@ -89,19 +86,19 @@ import Layout from '../layouts/Layout.astro';
         </svg>
       </div>
 
-      <h2 class="text-5xl md:text-[80px] font-heading tracking-tight leading-[0.95] uppercase relative z-10">Let's Work<br>Together!</h2>
+      <h2 class="text-4xl sm:text-5xl md:text-[80px] font-heading tracking-tight leading-[0.95] uppercase relative z-10">Let's Work<br>Together!</h2>
       <p class="text-neutral-600 dark:text-neutral-400 text-lg md:text-[20px] max-w-xl leading-[1.6] relative z-10 font-normal">
         If you're building a brand, product, or platform and need a technical partner who can think strategically and execute at a high level - I'd love to connect.
       </p>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4 relative z-10">
-        <a href="mailto:hello@mirzakaiyum.com" class="flex flex-col gap-3 p-8 rounded-[20px] bg-white dark:bg-[#202020] shadow-sm hover:shadow-md border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 group">
-          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-[0.2em] font-medium">E-mail</span>
-          <span class="text-xl md:text-2xl font-bold tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">hello@mirzakaiyum.com</span>
+        <a href="https://linkedin.com/in/itsmakmirza" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-3 p-8 rounded-[20px] bg-white dark:bg-[#202020] shadow-sm hover:shadow-md border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 group">
+          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-[0.2em] font-medium">LinkedIn</span>
+          <span class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">linkedin.com/in/itsmakmirza</span>
         </a>
-        <a href="#" class="flex flex-col gap-3 p-8 rounded-[20px] bg-white dark:bg-[#202020] shadow-sm hover:shadow-md border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 group">
-          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-[0.2em] font-medium">Phone / Whatsapp</span>
-          <span class="text-xl md:text-2xl font-bold tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">+123 456 7890</span>
+        <a href="https://github.com/itsmakmirza" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-3 p-8 rounded-[20px] bg-white dark:bg-[#202020] shadow-sm hover:shadow-md border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all duration-300 group">
+          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-[0.2em] font-medium">GitHub</span>
+          <span class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">github.com/itsmakmirza</span>
         </a>
       </div>
       
@@ -120,12 +117,14 @@ import Layout from '../layouts/Layout.astro';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+
+
     // Reveal animations
     inView("section", (element) => {
       animate(element,
         { opacity: [0, 1], y: [40, 0] },
         { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
       );
-    }, { margin: "-10% 0px" });
+    }, { once: true, margin: "0px 0px -80px 0px" });
   </script>
 </Layout>
