@@ -26,8 +26,5 @@
     "motion": "^12.38.0",
     "tailwindcss": "^4.2.2",
     "wrangler": "^4.80.0"
-  },
-  "overrides": {
-    "vite": "^7"
   }
 }
