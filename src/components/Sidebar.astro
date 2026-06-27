@@ -4,22 +4,34 @@ import ThemeToggle from './ThemeToggle.astro';
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { label: 'Homepage',     href: '/',     match: (p: string) => p === '/'                },
+  { label: 'Homepage', href: '/', match: (p: string) => p === '/' },
   { label: 'Projects', href: '/projects', match: (p: string) => p.startsWith('/projects')},
   { label: 'Writings', href: '/writings', match: (p: string) => p.startsWith('/writings')},
-  { label: 'About',    href: '/about',    match: (p: string) => p === '/about'           },
-  { label: 'Contact',  href: '/contact',  match: (p: string) => p === '/contact'         },
+  { label: 'About', href: '/about', match: (p: string) => p === '/about' },
+  { label: 'Contact', href: '/contact', match: (p: string) => p === '/contact' },
 ];
 ---
-<aside class="w-full lg:w-60 lg:h-screen lg:fixed top-0 left-0 shrink-0 flex flex-col justify-between py-6 px-4 lg:px-8 relative z-10 transition-colors duration-300">
-  <div class="flex flex-col gap-12">
+
+<aside id="sidebar" class="fixed inset-0 z-50 lg:hidden pointer-events-none" aria-hidden="true">
+  <!-- Backdrop -->
+  <div id="sidebar-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 backdrop-blur-sm" aria-hidden="true"></div>
+
+  <!-- Drawer -->
+  <div id="sidebar-drawer" class="absolute left-0 top-0 h-full w-72 transform -translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between py-6 px-6 bg-inner-bg dark:bg-inner-bg-dark border-r border-neutral-200/50 dark:border-neutral-800/50">
+    <!-- Close button -->
+    <button id="sidebar-close" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Close menu">
+      <svg class="w-6 h-6 text-neutral-600 dark:text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
     <!-- Branding / Logo -->
     <div class="flex items-center justify-between">
-      <a href="/" class="text-2xl font-heading tracking-tight hover:opacity-80 transition-opacity">MAK</br></a>
+      <a href="/" class="text-2xl font-heading tracking-tight hover:opacity-80 transition-opacity">MAK<br/></a>
     </div>
 
     <!-- Navigation -->
-    <nav class="hidden lg:flex flex-col gap-6 mt-8">
+    <nav class="flex flex-col gap-6 mt-8">
       <ul class="flex flex-col gap-5 font-mono text-[13px] uppercase tracking-[0.05em] text-neutral-500 dark:text-neutral-400">
         {navLinks.map(({ label, href, match }) => {
           const isActive = match(currentPath);
@@ -40,10 +52,57 @@ const navLinks = [
         })}
       </ul>
     </nav>
+
+    <!-- Bottom Section: Toggle and Resumé -->
+    <div class="flex flex-col gap-8">
+      <ThemeToggle />
+
+      <!-- Mini Profile Card -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full overflow-hidden bg-neutral-200 dark:bg-neutral-800">
+          <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Mak" alt="Mirza Kaiyum" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-bold text-neutral-900 dark:text-neutral-100">Mirza Kaiyum</span>
+          <span class="text-xs text-neutral-500 font-mono mt-0.5">Product Engineer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Desktop Sidebar (always visible on lg+) -->
+<aside class="hidden lg:flex w-60 h-screen fixed top-0 left-0 shrink-0 flex-col justify-between py-6 px-8 z-10">
+  <!-- Branding / Logo -->
+  <div class="flex items-center justify-between">
+    <a href="/" class="text-2xl font-heading tracking-tight hover:opacity-80 transition-opacity">MAK<br/></a>
   </div>
 
+  <!-- Navigation -->
+  <nav class="flex flex-col gap-6 mt-8">
+    <ul class="flex flex-col gap-5 font-mono text-[13px] uppercase tracking-[0.05em] text-neutral-500 dark:text-neutral-400">
+      {navLinks.map(({ label, href, match }) => {
+        const isActive = match(currentPath);
+        return (
+          <li>
+            <a href={href} class:list={[
+              "hover:text-neutral-900 dark:hover:text-white transition-colors relative group flex items-center",
+              isActive ? "text-neutral-900 dark:text-white" : ""
+            ]}>
+              <span class:list={[
+                "absolute -left-5 w-1.5 h-1.5 rounded-full bg-neutral-900 dark:bg-white transition-all duration-300",
+                isActive ? "opacity-100 scale-100" : "opacity-0 scale-50 group-hover:scale-100 group-hover:opacity-50"
+              ]}></span>
+              {label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+
   <!-- Bottom Section: Toggle and Resumé -->
-  <div class="hidden lg:flex flex-col gap-8">
+  <div class="flex flex-col gap-8">
     <ThemeToggle />
 
     <!-- Mini Profile Card -->
@@ -58,3 +117,64 @@ const navLinks = [
     </div>
   </div>
 </aside>
+
+<!-- Mobile Header -->
+<header class="lg:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-inner-bg dark:bg-inner-bg-dark border-b border-neutral-200/50 dark:border-neutral-800/50">
+  <a href="/" class="text-xl font-heading tracking-tight">MAK</a>
+
+  <button id="sidebar-open" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Open menu">
+    <svg class="w-6 h-6 text-neutral-600 dark:text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</header>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+  const sidebarDrawer = document.getElementById('sidebar-drawer');
+  const sidebarOpen = document.getElementById('sidebar-open');
+  const sidebarClose = document.getElementById('sidebar-close');
+
+  let isOpen = false;
+
+  function openSidebar() {
+    isOpen = true;
+    sidebar?.classList.remove('pointer-events-none');
+    sidebar?.classList.add('pointer-events-auto');
+    sidebar?.removeAttribute('aria-hidden');
+    sidebarBackdrop?.classList.remove('opacity-0');
+    sidebarBackdrop?.classList.add('opacity-100');
+    sidebarDrawer?.classList.remove('-translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    isOpen = false;
+    sidebar?.classList.add('pointer-events-none');
+    sidebar?.classList.remove('pointer-events-auto');
+    sidebar?.setAttribute('aria-hidden', 'true');
+    sidebarBackdrop?.classList.add('opacity-0');
+    sidebarBackdrop?.classList.remove('opacity-100');
+    sidebarDrawer?.classList.add('-translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  sidebarOpen?.addEventListener('click', openSidebar);
+  sidebarClose?.addEventListener('click', closeSidebar);
+  sidebarBackdrop?.addEventListener('click', closeSidebar);
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      closeSidebar();
+    }
+  });
+
+  // Close sidebar when navigating (for mobile SPA navigation)
+  sidebar?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (isOpen) closeSidebar();
+    });
+  });
+</script>
